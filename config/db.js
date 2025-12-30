@@ -1,9 +1,10 @@
 const mongoose = require("mongoose")
-const connectionString = process.env.DBSTRING
-mongoose.connect(connectionString).then(res=>{
-    console.log('db connected');
-    
-}).catch(err=>{
-    console.log('db connection failed');
-    console.log(err)
+// Prefer bookstore-style env name for local dev, with fallbacks
+const connectionString = process.env.DATABASE || process.env.DBSTRING || process.env.MONGODB_URI || process.env.MONGO_URL || process.env.DATABASE_URL
+
+mongoose.connect(connectionString).then(() => {
+    console.log('MongoDB Connected');
+}).catch(err => {
+    console.log('MongoDB Connection failed, due to', err)
+    // Do not exit; allow server to run for local dev similar to bookstore
 })

@@ -6,6 +6,7 @@ const path = require('path')
 const routes = require('./routes/routes')
 require('./config/db')
 const gravastarServer = express()
+// Simple CORS and JSON like bookstore
 gravastarServer.use(cors())
 gravastarServer.use(express.json())
 
