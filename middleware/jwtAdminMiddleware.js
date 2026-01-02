@@ -11,7 +11,7 @@ const jwtAdminMiddleware = async (req, res, next) => {
     const jwtResponse = jwt.verify(token, "secretkey");
     req.payload = jwtResponse.userMail;
 
-    // Lookup user and require role=admin
+    
     const user = await Users.findOne({ email: req.payload });
     if (user && user.role === "admin") {
       return next();

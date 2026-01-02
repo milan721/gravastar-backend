@@ -37,7 +37,7 @@ routes.post(
   
 );
 
-// ---------- REVIEWER: MANAGE REVIEWER REQUESTS ----------
+// ---------- REVIEWER REQUESTS ----------
 routes.get(
   "/reviewer/review-requests",
   jwtMiddleware,
@@ -106,7 +106,7 @@ routes.get("/all-papers", paperController.getAllPapersController);
 // ---------- DELETE PAPER ----------
 routes.delete("/paper/:id", jwtMiddleware, paperController.deletePaperController);
 
-// ---------- ADMIN: LISTS ----------
+// ---------- admin dasboard ----------
 routes.get("/admin/users", jwtAdminMiddleware, userController.getAllUsersController);
 routes.get("/admin/reviewers", jwtAdminMiddleware, async (req, res) => {
   try {
@@ -117,21 +117,21 @@ routes.get("/admin/reviewers", jwtAdminMiddleware, async (req, res) => {
   }
 });
 
-// ---------- ADMIN: USER ACTIONS ----------
+// ---------- admin USER ACTIONS ----------
 routes.delete("/admin/users/:id", jwtAdminMiddleware, userController.deleteUserController);
 routes.post("/admin/users/:id/upgrade", jwtAdminMiddleware, userController.upgradeUserRoleController);
 
-// ---------- ADMIN: REVIEWER ACTIONS ----------
+// ---------- admin REVIEWER ACTIONS ----------
 routes.delete("/admin/reviewers/:id", jwtAdminMiddleware, reviewRequestController.deleteReviewerController);
 
-// ---------- ADMIN: APPROVE PAPER ----------
+// ---------- amin add to grid APPROVE PAPER ----------
 routes.post(
   "/admin/papers/:paperId/approve",
   jwtAdminMiddleware,
   improveController.adminApprovePaperController
 );
 
-// ---------- ADMIN: LIST ACCEPTED/REJECTED PAPERS ----------
+// ---------- admin ACCEPTED/REJECTED PAPERS ----------
 routes.get(
   "/admin/review-accepted",
   jwtAdminMiddleware,

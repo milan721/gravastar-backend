@@ -3,22 +3,22 @@ const Paper = require("../model/paperModel");
 const ReviewStatus = require("../model/reviewStatusModel");
 const Users = require("../model/userModel");
 
-// Add a new improvement suggestion
+// Add a new  suggestion
 exports.addSuggestionController = async (req, res) => {
   try {
     const { status, suggestions } = req.body;
      console.log({ status, suggestions });
 
-    // create new document
+    
     const newSuggestion = new Improves({
       status,
       suggestions
     });
 
-    // save to MongoDB
+    
     await newSuggestion.save();
 
-    // respond with saved data
+    
     res.status(200).json(newSuggestion);
   } catch (err) {
     console.error(err);

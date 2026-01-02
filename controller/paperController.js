@@ -15,7 +15,7 @@ exports.publishPaperController = async (req, res) => {
       publisher,
     } = req.body;
 
-    // duplicate check using id
+    
     const existingPaper = await Paper.findOne({ id });
     if (existingPaper) {
       return res.status(409).json("Paper already exists");
@@ -50,7 +50,7 @@ exports.publishPaperController = async (req, res) => {
 exports.deletePaperController = async (req, res) => {
   try {
     const { id } = req.params;
-    const requesterEmail = req.payload; // set by jwtMiddleware
+    const requesterEmail = req.payload; 
     if (!requesterEmail) return res.status(401).json("Unauthorized");
 
     const users = require("../model/userModel");

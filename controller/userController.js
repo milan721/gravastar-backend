@@ -52,7 +52,7 @@ exports.loginController = async (req, res) => {
       return res.status(401).json("Incorrect Password");
     }
 
-    // mark last login time
+    //  last login 
     existingUser.lastLogin = new Date();
     await existingUser.save();
     const token = jwt.sign({ userMail: existingUser.email }, "secretkey");
@@ -154,7 +154,7 @@ exports.editUserProfileController = async (req, res) => {
   }
 };
 
-// ADMIN: delete a user by id
+// admn delete a user by id
 exports.deleteUserController = async (req, res) => {
   try {
     const { id } = req.params;
@@ -167,7 +167,7 @@ exports.deleteUserController = async (req, res) => {
   }
 };
 
-// ADMIN: upgrade/change a user's role
+// adnim upgrade a user's role
 exports.upgradeUserRoleController = async (req, res) => {
   try {
     const { id } = req.params;

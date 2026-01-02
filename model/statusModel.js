@@ -1,7 +1,6 @@
-// import mongoose
+
 const mongoose = require("mongoose");
 
-// create schema
 const statusSchema = new mongoose.Schema({
   status: {
     type: String,

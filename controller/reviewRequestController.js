@@ -20,7 +20,7 @@ exports.reviewController = async (req, res) => {
     references
   } = req.body;
 
-  // collect uploaded file names as array
+  // collect uploaded file 
   const pdf = Array.isArray(req.files) ? req.files.map(f => f.filename) : [];
 
   console.log({ name, location, university, info,
@@ -70,7 +70,7 @@ exports.reviewController = async (req, res) => {
   }
 };
 
-// ADMIN: delete reviewer application by id
+// ADMIN delete reviewer 
 exports.deleteReviewerController = async (req, res) => {
   try {
     const { id } = req.params;
@@ -82,7 +82,7 @@ exports.deleteReviewerController = async (req, res) => {
   }
 };
 
-// REVIEWER: list all reviewer requests (requires reviewer role)
+//  all reviewer requests 
 exports.listReviewerRequestsController = async (req, res) => {
   try {
     const email = req.payload;
@@ -99,7 +99,7 @@ exports.listReviewerRequestsController = async (req, res) => {
   }
 };
 
-// REVIEWER: approve a reviewer request (upgrade user role to reviewer and delete request)
+// reviwer approve a reviewer request 
 exports.approveReviewerRequestController = async (req, res) => {
   try {
     const email = req.payload;
@@ -114,7 +114,7 @@ exports.approveReviewerRequestController = async (req, res) => {
     if (!reqDoc) return res.status(404).json({ error: "Request not found" });
     const user = await users.findOne({ email: reqDoc.email });
     if (!user) return res.status(404).json({ error: "User not found for request" });
-    // persist reviewer application info on user doc so Admins/Reviewers can view later
+    
     user.role = "reviewer";
     user.reviewerInfo = {
       name: reqDoc.name,

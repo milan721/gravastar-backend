@@ -6,11 +6,11 @@ const path = require('path')
 const routes = require('./routes/routes')
 require('./config/db')
 const gravastarServer = express()
-// Simple CORS and JSON like bookstore
+
 gravastarServer.use(cors())
 gravastarServer.use(express.json())
 
-// Ensure uploads directory exists and serve static files
+
 const uploadsDir = path.join(__dirname, 'uploads')
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true })
